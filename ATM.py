@@ -1,53 +1,37 @@
 import sys
 
+print("Simple ATM Withdrawal Program")
+print("-----------------------------")
 
-def parse_amount(val: str, name: str) -> float:
-	try:
-		return float(val)
-	except Exception:
-		raise ValueError(f"Invalid {name}: must be a numeric value.")
+# Read current balance (repeat until a valid non-negative number is entered)
+while True:
+    bal_input = input("Enter current balance: ").strip()
+    try:
+        balance = float(bal_input)
+        if balance < 0:
+            print("Balance cannot be negative. Please try again.")
+            continue
+        break
+    except Exception:
+        print("Invalid input. Please enter a number like 100 or 100.50.")
 
+# Read withdrawal amount (repeat until a valid positive number is entered)
+while True:
+    wd_input = input("Enter withdrawal amount: ").strip()
+    try:
+        withdrawal = float(wd_input)
+        if withdrawal <= 0:
+            print("Withdrawal must be greater than 0. Please try again.")
+            continue
+        break
+    except Exception:
+        print("Invalid input. Please enter a number like 25 or 25.00.")
 
-def run_withdrawal(balance: float, withdrawal: float) -> int:
-	"""Validate and perform withdrawal. Returns 0 on success, 1 on error."""
-	if withdrawal <= 0:
-		print("Error: Withdrawal amount must be greater than 0.")
-		return 1
-	if withdrawal > balance:
-		print("Error: Insufficient funds.")
-		return 1
+# Validate and show result
+if withdrawal > balance:
+    print(f"Error: Insufficient funds. Your balance is ${balance:.2f}.")
+    sys.exit(1)
 
-	new_balance = balance - withdrawal
-	print(f"New balance: ${new_balance:.2f}")
-	return 0
-
-
-def main(argv) -> int:
-	if len(argv) == 3:
-		try:
-			balance = parse_amount(argv[1], "current balance")
-			withdrawal = parse_amount(argv[2], "withdrawal amount")
-		except ValueError as e:
-			print(e)
-			return 1
-		return run_withdrawal(balance, withdrawal)
-	try:
-		bal_input = input("Enter current balance: ").strip()
-		balance = parse_amount(bal_input, "current balance")
-	except ValueError as e:
-		print(e)
-		return 1
-
-	try:
-		wd_input = input("Enter withdrawal amount: ").strip()
-		withdrawal = parse_amount(wd_input, "withdrawal amount")
-	except ValueError as e:
-		print(e)
-		return 1
-
-	return run_withdrawal(balance, withdrawal)
-
-
-if __name__ == "__main__":
-	raise SystemExit(main(sys.argv))
-
+new_balance = balance - withdrawal
+print(f"Withdrawal successful. New balance: ${new_balance:.2f}")
+sys.exit(0)
