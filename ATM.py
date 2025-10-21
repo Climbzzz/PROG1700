@@ -3,7 +3,6 @@ import sys
 print("Simple ATM Withdrawal Program")
 print("-----------------------------")
 
-# Read current balance (repeat until a valid non-negative number is entered)
 while True:
     bal_input = input("Enter current balance: ").strip()
     try:
@@ -15,7 +14,6 @@ while True:
     except Exception:
         print("Invalid input. Please enter a number like 100 or 100.50.")
 
-# Read withdrawal amount (repeat until a valid positive number is entered)
 while True:
     wd_input = input("Enter withdrawal amount: ").strip()
     try:
@@ -27,7 +25,6 @@ while True:
     except Exception:
         print("Invalid input. Please enter a number like 25 or 25.00.")
 
-# Validate and show result
 if withdrawal > balance:
     print(f"Error: Insufficient funds. Your balance is ${balance:.2f}.")
     sys.exit(1)
