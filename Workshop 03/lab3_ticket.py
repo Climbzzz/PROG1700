@@ -19,7 +19,7 @@ def main():
         price = 8
     elif 13 <= age <= 64:
         price = 12
-    else:  # age >= 65
+    else:
         price = 6
 
     if age >= 13:
