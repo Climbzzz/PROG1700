@@ -1,4 +1,4 @@
-'''
+
 # --- 1. ---
 ticket = ("Halifax", "Toronto", "AC702", 349.99)
 print("Flight:", ticket)
@@ -8,7 +8,9 @@ flight_number = ticket[2]
 flight_price = ticket[3]
 print(f"A flight from {flight_from} 🧳 to {flight_to} 🌎 on flight ✈️  {flight_number} will cost ${flight_price}")
 
+
 # --- 2. ---
+
 
 flights = [
     ("Halifax", "Montreal", 189.99),
@@ -26,8 +28,10 @@ while i < len(flights):
     total_price += price
     i += 1
 print(f"Total price of all flights: ${total_price}")
-'''
+
+
 # -- 3. ---
+
 
 flight = ("Halifax", "Toronto", 349.99)
 print("Before:", flight)
@@ -48,7 +52,9 @@ while True:
 updated_flight = update_flight(flight, new_destination, new_price)
 print("Updated flight:", updated_flight)
 
+
 # -- 4. ---
+
 
 toppings = ["Pepperoni", "Mushroom", "Hot Peppers", "Cheese"]
 t_str = "The toppings on the pizza are: "

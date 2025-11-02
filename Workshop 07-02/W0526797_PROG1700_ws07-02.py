@@ -102,7 +102,7 @@ song_totals = {}
 for s, p in zip(songs, plays):
     song_totals[s] = song_totals.get(s, 0) + p
 
-# Bonus: allow user to add new songs simply
+# allow user to add new songs simply
 print("Add songs (type 'done' to finish):")
 while True:
     title = input("Song title: ")
