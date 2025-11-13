@@ -47,7 +47,7 @@ def print_scoreboard(score):
 def print_history(history):
     print("Game History:")
     for round_num, (player_move, cpu_move, result) in enumerate(history, start=1):
-        print(f"Round {round_num}: Player = {player_move}, CPU = {cpu_move} - Result: {result}")
+        print(f"Round {round_num}: Player = {color_map[player_move]}, CPU = {color_map[cpu_move]} - Result: {result}")
 
 
 best_of = input("Enter the number of rounds to play (best of 3, 5, 7): ")
@@ -73,7 +73,7 @@ while True:
     
     history.append((player_move, cpu_move, result))
     
-    print(f"You chose {player_move}, CPU chose {cpu_move}. Result: {result}")
+    print(f"You chose {color_map[player_move]}, CPU chose {color_map[cpu_move]}. Winner: {result}")
     print_scoreboard(score)
 
     if score["player"] > math.ceil(int(best_of)//2):
