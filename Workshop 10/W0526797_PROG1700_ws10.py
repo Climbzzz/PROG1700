@@ -43,6 +43,7 @@ print("thanks for calculatin' ")
 
 
 #--- B ---
-
+'''
 def c_to_f(c):
     return (c * 9/5) + 32
+    '''
