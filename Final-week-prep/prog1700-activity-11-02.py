@@ -1,25 +1,41 @@
 import os
 
-target_folder = r"C:\Users\W0526797\PROG1700\Final-week-prep"
-print("Using folder:", target_folder)
+def read_file_to_string(filename: str) -> str:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    files = [
+        filename,
+        os.path.join(script_dir, filename)
+    ]
 
-while True:
-    filename = input("Enter a .txt file name (0 to exit): ").strip()
+    for path in files:
+        try:
+            with open(path, 'r', encoding='utf-8') as fh:
+                return fh.read()
+        except FileNotFoundError:
+            continue
 
-    if filename == "0":
-        break
+    print(f"File not found or is empty: {filename}")
+    return ""
 
-    if not filename.lower().endswith(".txt"):
-        print("Filename must end with .txt")
-        continue
+def main():
+    print("Simple TXT File Reader\n")
 
-    full_path = os.path.join(target_folder, filename)
-    print("Full path:", full_path)
+    while True:
+        filename = input("Enter a .txt file to open (or 0 to exit): ").strip()
 
-    try:
-        with open(full_path, "r", encoding="utf-8") as f:
-            print("\n--- File content ---")
-            print(f.read())
-            print("--------------------\n")
-    except FileNotFoundError:
-        print("File not found in", target_folder)
+        if filename == "0":
+            print("Exiting program.")
+            break
+
+        if not filename.lower().endswith(".txt"):
+            print("Error: You must provide a .txt file.\n")
+            continue
+
+        content = read_file_to_string(filename)
+
+        print("\n--- FILE CONTENT ---")
+        print(content)
+        print("--------------------\n")
+
+if __name__ == "__main__":
+    main()
