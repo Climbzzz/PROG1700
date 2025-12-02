@@ -12,6 +12,7 @@ def input_num_checker(num1, num2, exitcode):
 
             if selection < num1 or selection > num2:
                 print("Invalid number, try again.")
+                
         except ValueError:
             print("Invalid input, please enter a number.")
 
