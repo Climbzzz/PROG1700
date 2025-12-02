@@ -1,5 +1,7 @@
 import os
+import time
 
+#opens a text file and returns its content as a string
 def read_file_to_string(filename: str) -> str:
     script_dir = os.path.dirname(os.path.abspath(__file__))
     files = [
@@ -24,8 +26,13 @@ def main():
         filename = input("Enter a .txt file to open (or 0 to exit): ").strip()
 
         if filename == "0":
-            print("Exiting program.")
+            print("Exiting program", end="", flush=True)
+            for _ in range(3):
+                time.sleep(1)
+                print(".", end="", flush=True)
+            print()
             break
+          #little . fun
 
         if not filename.lower().endswith(".txt"):
             print("Error: You must provide a .txt file.\n")
