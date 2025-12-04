@@ -1,24 +1,46 @@
-def validatefilename(filename):
-    import re
-    # Regular expression to match valid filenames (letters, numbers, underscores, hyphens) ending with .txt
-    pattern = r'^[\w\-]+\.txt$'
-    return re.match(pattern, filename) is not None
+import os
+import time
  
-while True:
-    userinput = input("Enter a filename (filename.txt) or 0 to exit: ").strip()
-    # print(userinput)
+def read_file_to_string(filename: str) -> str:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    files = [
+        filename,
+        os.path.join(script_dir, filename)
+    ]
  
-    if userinput == "0":
-        print("Exiting the program. Goodbye!")
-        break
- 
-    if validatefilename(userinput):
-        # print(f"Valid filename: {userinput}")
+    for path in files:
         try:
-            with open(userinput, 'r') as file:
-                content = file.read()
-                print(content)
+            with open(path, 'r', encoding='utf-8') as fh:
+                return fh.read()
         except FileNotFoundError:
-            print(f"File not found: {userinput}. Please check the filename and try again.")
-    else:
-        print(f"Invalid filename: {userinput}. Ensure formate is 'filename.txt' with only letters, numbers, underscores, or hyphens.")
+            continue
+ 
+    print(f"File not found or is empty: {filename}")
+    return ""
+ 
+def main():
+    print("Simple TXT File Reader\n")
+ 
+    while True:
+        filename = input("Enter a .txt file to open (or 0 to exit): ").strip()
+ 
+        if filename == "0":
+            print("Exiting program", end="", flush=True)
+            for _ in range(3):
+                time.sleep(1)
+                print(".", end="", flush=True)
+            print()  # new line after dots
+            break
+ 
+        if not filename.lower().endswith(".txt"):
+            print("Error: You must provide a .txt file.\n")
+            continue
+ 
+        content = read_file_to_string(filename)
+ 
+        print("\n--- FILE CONTENT ---")
+        print(content)
+        print("--------------------\n")
+ 
+if __name__ == "__main__":
+    main()
