@@ -20,7 +20,7 @@ def read_file_to_string(filename: str) -> str:
     return ""
 
 def main():
-    print("Simple TXT File Reader\n")
+    print("Simple TXT File Reader\n") 
 
     while True:
         filename = input("Enter a .txt file to open (or 0 to exit): ").strip()
